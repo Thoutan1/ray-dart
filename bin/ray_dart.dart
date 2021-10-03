@@ -23,6 +23,8 @@ void main() {
     ..registerCommand("ping", rod.pingCommand);
 
   Interactions(bot)
+  //  ..registerSlashCommand(SlashCommandBuilder("say", "Say something", [CommandOptionBuilder(CommandOptionType.string, "say", "Say string")])
+  //     ..registerHandler(rod.saySlashHandler))
     ..registerSlashCommand(SlashCommandBuilder("ping", "Shows bots latency", [])
       ..registerHandler(rod.pingSlashHandler))
     ..syncOnReady();
