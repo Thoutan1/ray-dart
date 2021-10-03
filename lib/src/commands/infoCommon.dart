@@ -16,7 +16,7 @@ Future<EmbedBuilder> infoGenericCommand(Nyxx client, [int shardId = 0]) async {
       author.url = "https://github.com/nyxx-discord/nyxx";
     })
     ..addFooter((footer) {
-      footer.text = "Nyxx ${Constants.version} | Shard [${shardId + 1}] of [${client.shards}] | Dart SDK $dartVersion";
+      footer.text = "Nyxx ${Constants.version} | Shard [${shardId + 1}] of [${client.shards}]";
     })
     ..color = color
     ..addField(name: "Cached guilds", content: client.guilds.count, inline: true)
@@ -47,6 +47,11 @@ Future<EmbedBuilder> infoGenericCommand(Nyxx client, [int shardId = 0]) async {
         name: "Memory usage (current/RSS)",
         content: getMemoryUsageString(),
         inline: true
+    )
+    ..addField(
+      name: "Dart Version",
+      content: dartVersion,
+      inline: true
     )
     ..addField(
         name: "Member count (online/total)",

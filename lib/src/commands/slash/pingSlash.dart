@@ -15,7 +15,6 @@ Future<void> pingSlashHandler(SlashCommandInteractionEvent event) async {
   final apiStopwatch = Stopwatch()..start();
   await http.head(Uri(scheme: "https", host: Constants.host, path: Constants.baseUri));
   final apiPing = apiStopwatch.elapsedMilliseconds;
-
   final stopwatch = Stopwatch()..start();
 
   final embed = EmbedBuilder()

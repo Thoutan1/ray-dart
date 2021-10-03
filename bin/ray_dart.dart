@@ -19,6 +19,7 @@ void main() {
   Commander(bot, prefix: "?")
     ..registerCommand("info", rod.infoCommand)
     ..registerCommand("help", rod.helpCommand)
+    ..registerCommand("serverinfo", rod.serverInfoCommand)
     ..registerCommand("ping", rod.pingCommand);
 
   Interactions(bot)
