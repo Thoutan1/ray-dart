@@ -1,0 +1,24 @@
+name: ray_dart
+description: A Simple bot discord write in Dart
+version: 1.0.0
+author: ThisTuo#1909
+# homepage: https://www.example.com
+
+environment:
+  sdk: ">=2.15.0-164.0.dev <3.0.0"
+
+# dependencies:
+dependencies:
+  logging: "^1.0.0"
+  nyxx: "^2.0.0-rc.10"
+  nyxx_commander: "^2.0.0-rc.9"
+  time_ago_provider: "^4.0.0"
+  nyxx_interactions:
+    git:
+      url: git://github.com/nyxx-discord/nyxx.git
+      path: nyxx_interactions/
+  dotenv: ^3.0.0
+#   path: ^1.8.0
+
+dev_dependencies:
+  lints: ^1.0.0
