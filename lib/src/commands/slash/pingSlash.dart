@@ -5,6 +5,7 @@ import "dart:math" show Random;
 import "package:http/http.dart" as http;
 
 import "package:nyxx/nyxx.dart" show Constants, DiscordColor, EmbedBuilder, MessageBuilder;
+
 import "package:nyxx_interactions/interactions.dart" show InteractionEvent, SlashCommandInteractionEvent;
 
 Future<void> pingSlashHandler(SlashCommandInteractionEvent event) async {

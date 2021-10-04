@@ -1,10 +1,9 @@
 // ignore_for_file: unused_shown_name, avoid_single_cascade_in_expression_statements
 
-// import 'dart:js';
 
 import "package:nyxx/nyxx.dart";
 import "package:nyxx_commander/commander.dart";
-import "package:ray_dart/ray_dart.dart" as rod;
+import "package:ray_dart/ray_dart.dart" as c;
 import 'package:dotenv/dotenv.dart' show load, clean, isEveryDefined, env;
 import "package:nyxx_interactions/interactions.dart"
     show
@@ -29,21 +28,25 @@ bool beforeHandler(CommandContext context) {
 void main() {
   load();
 
-  final bot = Nyxx("${env['BOT_TOKEN']}", GatewayIntents.allUnprivileged);
+  final bot = Nyxx("${env['BOT_TOKEN']}", GatewayIntents.allUnprivileged, options: ClientOptions(guildSubscriptions: false, messageCacheSize: 10));
+  bot.onReady.listen((ReadyEvent e) {
+    print('${bot.self.username} has connected to Discord!');
+  });
   Commander(
     bot,
     prefix: "${env['PREFIX']}",
     beforeCommandHandler: beforeHandler,
   )
-    ..registerCommand("info", rod.infoCommand)
-    ..registerCommand("help", rod.helpCommand)
-    ..registerCommand("say", rod.sayCommand)
-    ..registerCommand("serverinfo", rod.serverInfoCommand)
-    ..registerCommand("ping", rod.pingCommand);
+    ..registerCommand("info", c.infoCommand)
+    ..registerCommand("help", c.helpCommand)
+    ..registerCommand("say", c.sayCommand)
+    ..registerCommand("uptime", c.uptimeCommand)
+    ..registerCommand("serverinfo", c.serverInfoCommand)
+    ..registerCommand("ping", c.pingCommand);
   Interactions(bot)
     //  ..registerSlashCommand(SlashCommandBuilder("say", "Say something", [CommandOptionBuilder(CommandOptionType.string, "say", "Say string")])
-    //     ..registerHandler(rod.saySlashHandler))
+    //     ..registerHandler(c.saySlashHandler))
     ..registerSlashCommand(SlashCommandBuilder("ping", "Shows bots latency", [])
-      ..registerHandler(rod.pingSlashHandler))
+      ..registerHandler(c.pingSlashHandler))
     ..syncOnReady();
 }

@@ -1,11 +1,12 @@
 import "dart:io" show Platform, ProcessInfo;
-
+import "package:nyxx/nyxx.dart" show Message, DiscordColor, GuildMessage;
 import "package:nyxx/nyxx.dart" show Nyxx;
 
 String? get envPrefix => Platform.environment["ROD_PREFIX"];
 String? get envHotReload => Platform.environment["ROD_HOT_RELOAD"];
 String? get envToken => Platform.environment["ROD_TOKEN"];
-bool get enabledIntentFeatures => Platform.environment["ROD_INTENT_FEATURES_ENABLE"] == "true";
+bool get enabledIntentFeatures =>
+    Platform.environment["ROD_INTENT_FEATURES_ENABLE"] == "true";
 
 DateTime _approxMemberCountLastAccess = DateTime.utc(2005);
 int _approxMemberCount = -1;
@@ -23,7 +24,8 @@ String getMemoryUsageString() {
 }
 
 String getApproxMemberCount(Nyxx client) {
-  if (DateTime.now().difference(_approxMemberCountLastAccess).inMinutes > 5 || _approxMemberCount == -1) {
+  if (DateTime.now().difference(_approxMemberCountLastAccess).inMinutes > 5 ||
+      _approxMemberCount == -1) {
     Future(() async {
       var amc = 0;
       var amo = 0;
@@ -46,3 +48,12 @@ String getApproxMemberCount(Nyxx client) {
 
   return "$_approxMemberOnline/$_approxMemberCount";
 }
+
+DiscordColor? getColorForUserFromMessage(Message message) {
+  if (message is GuildMessage) {
+    return message.member.highestRole.color;
+  }
+
+  return DiscordColor.fromInt(0x68C2AF);
+}
+
